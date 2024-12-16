@@ -13,6 +13,9 @@ help:
 generate:
 	go generate ${SRC_PKGS}
 
+get-deps:
+	go get -v -t ./ ./cmd/... ./compliance/... ./fuzz/...
+
 build:
 	rm -f $(CMD)
 	go build ${SRC_PKGS}
