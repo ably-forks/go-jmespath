@@ -320,6 +320,9 @@ func (p *Parser) nud(token token) (ASTNode, error) {
 		var parsed interface{}
 		err := json.Unmarshal([]byte(token.value), &parsed)
 		if err != nil {
+			err = json.Unmarshal([]byte("\""+token.value+"\""), &parsed)
+		}
+		if err != nil {
 			return ASTNode{}, err
 		}
 		return ASTNode{nodeType: ASTLiteral, value: parsed}, nil
